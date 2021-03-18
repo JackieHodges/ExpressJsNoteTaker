@@ -1,5 +1,5 @@
 # 11 Express.js: Note Taker
-Object-Oriented Programming: Team Profile Generator
+Express.js: Note Taker App
 
 
 ## Description
