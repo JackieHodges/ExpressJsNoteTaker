@@ -5,11 +5,12 @@ const path = require('path');
 const fs = require('fs');
 const generateUniqueId = require('generate-unique-id');
 const savedNotes = require('./db/db.json');
+const { EWOULDBLOCK } = require('constants');
 
 // Sets up the Express App
 
 const app = express();
-const PORT = 3000;
+var PORT = process.env.PORT || 3001;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -30,8 +31,7 @@ app.post('/api/notes', (req, res) => {
         "text": req.body.text,
         "id": generateUniqueId()
     }
-    // const id = generateUniqueId();
-    // // newNote.push(id);
+
     savedNotes.push(newNote);
     console.log(`saved notes array ${savedNotes}`)
 
@@ -46,9 +46,6 @@ app.post('/api/notes', (req, res) => {
     
     })    
 });
-
-//put needed for updating a certain 
-
 
 // Listener
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
