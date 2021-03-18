@@ -17,25 +17,18 @@ After the back-in was built, I connected to the front end, and deployed to Herok
 ## Table of Contents
 
 * [Installation](#installation)
-* [Usage](#usage)
 * [Credits](#credits)
 
 
 ## Installation
 
-To install, follow these steps:
+To install from GitHub, follow these steps:
 
 * Pull the repository found here: [Express JS Note Taker Repo](https://github.com/JackieHodges/ExpressJsNoteTaker)
 * Install dependencies by typing the following in the terminal: npm i
-* Once the dependence has been installed, run the application by entering: node index.js  
+* Once the dependence has been installed, run the application by entering: npm run start
 
-
-## Usage
-
-Below is a video of the typical user flow through of the application and passed tests:
-
-![video](Assets/walkthru.gif)
-
+Otherwise, this is where you can find the [Express JS Note Taker Herkou Deployed Page](https://afternoon-reef-37115.herokuapp.com/).
 
 
 ## Credits
