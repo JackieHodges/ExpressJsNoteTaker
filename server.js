@@ -20,16 +20,7 @@ app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')));
 
 // API Routes
-app.get('/api/notes', (req, res) => {
-    fs.readFile(`${__dirname}/db/db.json`, (err, data) => {
-        if (err) throw err;
-        // We then respond to the client with the HTML page by specifically telling the browser that we are delivering
-        // an html file.
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(data);
-    
-    })
-});
+app.get('/api/notes', (req, res) => res.json(savedNotes));
 
 app.post('/api/notes', (req, res) => {
     const newNote = req.body;
@@ -41,8 +32,7 @@ app.post('/api/notes', (req, res) => {
 
     fs.writeFile(`${__dirname}/db/db.json`, `${newSavedNotes}`, (err) => {
         if (err) throw err;
-        // We then respond to the client with the HTML page by specifically telling the browser that we are delivering
-        // an html file.
+
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(`${newSavedNotes}`);
     
