@@ -25,11 +25,31 @@ app.get('/api/notes', (req, res) => {
         if (err) throw err;
         // We then respond to the client with the HTML page by specifically telling the browser that we are delivering
         // an html file.
-        res.writeHead(200, { 'Content-Type': 'text/html' });
+        // res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(data);
     
     })
 });
+
+app.post('/api/notes', (req, res) => {
+    const newNote = req.body;
+    savedNotes.push(newNote);
+    console.log(`saved notes array ${savedNotes}`)
+
+    const newSavedNotes = JSON.stringify(savedNotes);
+    console.log(`New Saved Notes: ${newSavedNotes}`)
+    
+    fs.writeFile(`${__dirname}/db/db.json`, `${newSavedNotes}`, (err) => {
+        if (err) throw err;
+        // We then respond to the client with the HTML page by specifically telling the browser that we are delivering
+        // an html file.
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(`${newSavedNotes}`);
+    
+    })    
+});
+
+//put needed for updating a certain 
 
 
 // Listener
