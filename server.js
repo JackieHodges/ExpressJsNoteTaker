@@ -3,6 +3,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const generateUniqueId = require('generate-unique-id');
 const savedNotes = require('./db/db.json');
 
 // Sets up the Express App
@@ -24,7 +25,13 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html
 app.get('/api/notes', (req, res) => res.json(savedNotes));
 
 app.post('/api/notes', (req, res) => {
-    const newNote = req.body;
+    const newNote = {
+        "title": req.body.title,
+        "text": req.body.text,
+        "id": generateUniqueId()
+    }
+    // const id = generateUniqueId();
+    // // newNote.push(id);
     savedNotes.push(newNote);
     console.log(`saved notes array ${savedNotes}`)
 
